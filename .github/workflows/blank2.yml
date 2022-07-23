@@ -31,7 +31,9 @@ jobs:
         
       - name: Run asset test
         run: |
-          count = $(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l' > 0)
+          find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l'
+          find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l' > 0
+          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l' > 0)
           echo $count
           echo "$count"
           echo "$count > 0"
