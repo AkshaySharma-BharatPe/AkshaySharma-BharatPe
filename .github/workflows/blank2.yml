@@ -33,9 +33,9 @@ jobs:
         run: |
           count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
           if [ "$count" -gt 0 ]; then
-            exit 0
-          else
             exit 1
+          else
+            exit 0
           fi
           
 
