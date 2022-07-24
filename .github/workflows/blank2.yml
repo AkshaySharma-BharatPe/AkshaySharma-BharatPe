@@ -33,7 +33,7 @@ jobs:
         run: |
           find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l
           count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
-          if: ${{ count>0 }}
+          if: ${{ $count>0 }}
             echo $count
           else
             echo no
