@@ -15,5 +15,6 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            Hello world ! :wave:
-          GITHUB_TOKEN: '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'
+            Hello world ! :wave: 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
+          
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
