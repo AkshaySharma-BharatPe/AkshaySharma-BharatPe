@@ -5,21 +5,18 @@ on: pull_request
 
 jobs:
   example_comment_pr:
+    if: $(find src/assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) > 0
     runs-on: ubuntu-latest
     name: An example job to comment a PR
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+        
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
-            if [ "$count" -gt 0 ]; then
-              Oops!! You have assets whose size is greater than 100Kb. Please optimize them
-            else
-              Woohooo :wave:, Congratulations!!!. All assets are less than 100Kb.  
-            fi
+            Hello world!!!
+            ${{ count -gt 0 }}
           
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
