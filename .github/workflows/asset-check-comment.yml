@@ -16,4 +16,4 @@ jobs:
         with:
           message: |
             Hello world ! :wave:
-          GITHUB_TOKEN: ${{ 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 }}
+          GITHUB_TOKEN: ${{ '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' }}
