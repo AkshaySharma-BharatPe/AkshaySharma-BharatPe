@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment PR
-        if: (find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) > 0
+        if: true
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
@@ -14,7 +14,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR
-        if: (find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) === 1
+        if: false
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
