@@ -31,16 +31,35 @@ jobs:
 #           message: |
 #             Hello world ! :wave:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
- 
+
       - uses: actions/checkout@v3
       - name: Run asset test
         run: |
           count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
+          echo "count=${count}" >> $GITHUB_ENV
           if [ "$count" -gt 0 ]; then
-            echo ${count}
-            exit 1
+            echo "action_state=${count}" >> $GITHUB_ENV
           else
-            exit 0
+            echo "action_state2=${count}" >> $GITHUB_ENV
           fi
+ 
+      - name: use the value
+        id: step_two
+        run: |
+          echo "${env.count}"
+          echo "${env.action_state}"
+          echo "${env.action_state2}"
+
+
+#       - uses: actions/checkout@v3
+#       - name: Run asset test
+#         run: |
+#           count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
+#           if [ "$count" -gt 0 ]; then
+#             echo "action_state=${count}" >> $GITHUB_ENV
+#             exit 1
+#           else
+#             exit 0
+#           fi
           
 
