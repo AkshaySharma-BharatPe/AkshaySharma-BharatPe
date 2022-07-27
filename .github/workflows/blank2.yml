@@ -5,6 +5,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: set the count value
+        id: step_one
+        run: | 
+          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)  >> $GITHUB_ENV
+      - name: use the value
+        id: step_two
+        run: |
+          echo "${evn}"
+          echo "${env.count}"
+    
       - name: Comment PR
         if: true
         uses: thollander/actions-comment-pull-request@v1
