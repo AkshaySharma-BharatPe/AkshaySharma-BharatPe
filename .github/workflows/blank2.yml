@@ -1,6 +1,12 @@
 name: Assets Checker
 
 # Controls when the workflow will run
+#                github.issues.createComment({
+#                   body: '👋 Thanks for reporting! You have many assets > 100kb'
+#                 })
+#   github.issues.createComment({
+#                   body: '👋 Thanks for reporting! All assets are less than 100 kb'
+#                 })
 on: [pull_request]
 
 jobs:
@@ -15,15 +21,13 @@ jobs:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            echo "counting"
             count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
+            echo $count
              if [ "$count" -gt 0 ]; then
-               github.issues.createComment({
-                  body: '👋 Thanks for reporting! You have many assets > 100kb'
-                })
+                echo "yes"
             else
-              github.issues.createComment({
-                  body: '👋 Thanks for reporting! All assets are less than 100 kb'
-                })
+                echo "no"
             fi
  
       - uses: actions/checkout@v3
