@@ -46,8 +46,9 @@ jobs:
       - name: use the value
         id: step_two
         run: |
-          echo "${env.action_state}"
-          echo "${env.action_state2}"
+          echo "${{env.count}}"
+          echo "${{env.action_state}}"
+          echo "${{env.action_state2}}"
 
 
 #       - uses: actions/checkout@v3
