@@ -31,9 +31,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run asset test
         run: |
-          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
-          if [ "$count" -gt 0 ]; then
-            echo "action_state=${count}" >> $GITHUB_ENV
+          if ${{env.assets_count != 0}} then
             exit 1
           else
             exit 0
