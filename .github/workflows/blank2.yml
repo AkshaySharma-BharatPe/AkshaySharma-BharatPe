@@ -21,9 +21,9 @@ jobs:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log('1');
-            const count = find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l
-            console.log('2');
+            github.issues.createComment({
+              body: '👋 Thanks for reporting! You have many assets > 100kb'
+            })
  
       - uses: actions/checkout@v3
       - name: Run asset test
