@@ -22,13 +22,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
             echo "counting"
-            count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
-            echo $count
-             if [ "$count" -gt 0 ]; then
-                echo "yes"
-            else
-                echo "no"
-            fi
  
       - uses: actions/checkout@v3
       - name: Run asset test
