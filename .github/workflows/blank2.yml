@@ -5,44 +5,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-#       - name: set the count value
-#         id: step_one
-#         run: | 
-#           count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
-#           echo "$count"
-#       - name: use the value
-#         id: step_two
-#         run: |
-#           echo "${evn}"
-#           echo "${env.count}"
     
-#       - name: Comment PR
-#         if: true
-#         uses: thollander/actions-comment-pull-request@v1
-#         with:
-#           message: |
-#             Hello world ! :wave:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#       - name: Comment PR
-#         if: false
-#         uses: thollander/actions-comment-pull-request@v1
-#         with:
-#           message: |
-#             Hello world ! :wave:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - uses: actions/checkout@v3
-      - name: Run asset test
+      - name: Set asset count
         run: |
           count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
           echo "count=${count}" >> $GITHUB_ENV
           if [ "$count" -gt 0 ]; then
-            echo "action_state=${count}" >> $GITHUB_ENV
-          else
-            echo "action_state2=${count}" >> $GITHUB_ENV
-          fi
+             echo "has_invalid_size_assets=true" >> $GITHUB_ENV
+           else
+             echo "has_invalid_size_assets=false" >> $GITHUB_ENV
+           fi
  
+      - name: Comment PR
+        if: ${{env.count}}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hello world ! :wave - 1st 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment PR
+        if: ${{env.has_invalid_size_assets}}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hello world ! :wave - 2nd:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: use the value
         id: step_two
         run: |
