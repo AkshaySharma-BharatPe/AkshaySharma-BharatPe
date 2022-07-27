@@ -7,16 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Run asset test
-        run: |
-          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
-          if [ "$count" -gt 0 ]; then
-            exit 1
-          else
-            exit 0
-          fi
-          
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
@@ -35,5 +25,15 @@ jobs:
                   body: '👋 Thanks for reporting! All assets are less than 100 kb'
                 })
             fi
-           
+ 
+      - uses: actions/checkout@v3
+      - name: Run asset test
+        run: |
+          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
+          if [ "$count" -gt 0 ]; then
+            exit 1
+          else
+            exit 0
+          fi
+          
 
