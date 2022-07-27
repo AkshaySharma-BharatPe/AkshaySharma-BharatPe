@@ -1,40 +1,17 @@
 name: Automatic Github Action Commenter
-
-# Controls when the workflow will run
 on: pull_request
 
 jobs:
-  job1: 
-#     example_comment_pr:
-      if: (find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) > 0
-      runs-on: ubuntu-latest
-      name: An example job to comment a PR
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+  example_comment_pr:
+    runs-on: ubuntu-latest
+    name: An example job to comment a PR
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-        - name: Comment PR
-          uses: thollander/actions-comment-pull-request@v1
-          with:
-            message: |
-              Hello world!!!
-
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            
-            
-  job2: 
-#     example_comment_pr:
-      if: true
-      runs-on: ubuntu-latest
-      name: Job 2
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-
-        - name: Comment PR
-          uses: thollander/actions-comment-pull-request@v1
-          with:
-            message: |
-              Hello world - 2nd one!!!
-
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hello world ! :wave:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
