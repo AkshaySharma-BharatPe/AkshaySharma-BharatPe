@@ -17,7 +17,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            Oops :eyes: !!! You have assets with size more than 100Kb. Please optimize them. 
+            Oops :eyes: :eyes: !!! You have assets with size more than 100Kb. Please optimize them. 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR for valid assets
@@ -25,7 +25,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            Woohooo :hooray: !!! Congratulations, your all assets are less than 100Kb. 
+            Woohooo :hooray: rocket !!! Congratulations, your all assets are less than 100Kb. 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - uses: actions/checkout@v3
