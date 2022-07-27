@@ -6,7 +6,7 @@ on: pull_request
 jobs:
   job1: 
 #     example_comment_pr:
-      if: $(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) > 0
+      if: (find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) > 0
       runs-on: ubuntu-latest
       name: An example job to comment a PR
       steps:
