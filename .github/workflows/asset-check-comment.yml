@@ -18,7 +18,6 @@ jobs:
           with:
             message: |
               Hello world!!!
-              ${{ count -gt 0 }}
 
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
@@ -37,6 +36,5 @@ jobs:
           with:
             message: |
               Hello world - 2nd one!!!
-              ${{ count -gt 0 }}
 
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
