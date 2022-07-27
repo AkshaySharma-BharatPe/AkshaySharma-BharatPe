@@ -1,12 +1,4 @@
 name: Assets Checker
-
-# Controls when the workflow will run
-#                github.issues.createComment({
-#                   body: '👋 Thanks for reporting! You have many assets > 100kb'
-#                 })
-#   github.issues.createComment({
-#                   body: '👋 Thanks for reporting! All assets are less than 100 kb'
-#                 })
 on: [pull_request]
 
 jobs:
@@ -16,14 +8,10 @@ jobs:
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
-#           message: |
-#             Hello world ! :wave: ${{count}}
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            Hello world ! :wave:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.issues.createComment({
-              body: '👋 Thanks for reporting! You have many assets > 100kb'
-            })
+
  
       - uses: actions/checkout@v3
       - name: Run asset test
