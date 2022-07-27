@@ -18,10 +18,22 @@ jobs:
           fi
           
       - name: Comment PR
-        if: ${{count > 0}}
         uses: thollander/actions-comment-pull-request@v1
         with:
-          message: |
-            Hello world ! :wave: ${{count}}
+#           message: |
+#             Hello world ! :wave: ${{count}}
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
+             if [ "$count" -gt 0 ]; then
+               github.issues.createComment({
+                  body: '👋 Thanks for reporting! You have many assets > 100kb'
+                })
+            else
+              github.issues.createComment({
+                  body: '👋 Thanks for reporting! All assets are less than 100 kb'
+                })
+            fi
+           
 
