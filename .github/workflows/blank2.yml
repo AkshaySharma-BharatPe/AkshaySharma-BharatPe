@@ -18,13 +18,21 @@ jobs:
            fi
  
       - name: Comment PR
-        if: ${{env.count}}
+        if: ${{env.count > 0}}
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
             Hello world ! :wave - 1st 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Comment PR
+        if: ${{env.count > 10}}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hello world ! :wave - 1st 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Comment PR
         if: ${{env.has_invalid_size_assets}}
         uses: thollander/actions-comment-pull-request@v1
