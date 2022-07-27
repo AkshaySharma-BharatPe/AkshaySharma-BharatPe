@@ -8,7 +8,8 @@ jobs:
       - name: set the count value
         id: step_one
         run: | 
-          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)  >> $GITHUB_ENV
+          count=$(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l)
+          echo "$count"
       - name: use the value
         id: step_two
         run: |
