@@ -13,7 +13,7 @@ jobs:
           echo "assets_count=${count}" >> $GITHUB_ENV
  
       - name: Comment PR for invalid assets
-        if: ${{env.assets_count > 0}}
+        if: ${{env.assets_count != 0}}
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
@@ -21,11 +21,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR for valid assets
-        if: ${{env.count == 0}}
+        if: ${{env.assets_count == 0}}
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            Woohooo :hooray: rocket !!! Congratulations, your all assets are less than 100Kb. 
+            Woohooo :rocket: !!! Congratulations, your all assets are less than 100Kb. 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - uses: actions/checkout@v3
