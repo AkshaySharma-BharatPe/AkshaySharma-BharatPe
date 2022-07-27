@@ -6,12 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment PR
+        if: $(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) > 0
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
             Hello world ! :wave:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Comment PR
+        if: $(find assets/ -type f -size +100k -exec ls -lh {} \; | wc -l) === 1
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hello world ! :wave:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
       - uses: actions/checkout@v3
       - name: Run asset test
